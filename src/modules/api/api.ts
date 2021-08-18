@@ -22,7 +22,7 @@ class Api {
     }   
 
     async fetch(endpoint:any, data?:any) {
-        const response = await this.generateRequest(endpoint, data)
+        const response:any = await this.generateRequest(endpoint, data)
         return response.json()
     }
 }

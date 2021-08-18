@@ -1,6 +1,7 @@
 import camelcase from "camelcase";
 import ENDPOINTS from "modules/api/endpoints";
 import { API_ACTIONS } from "modules/api/actions";
+import { Action } from 'modules/lib/interfaces';
 
 function initApistate() {
     return Object.keys(ENDPOINTS).reduce((acc:any, next)=>{
@@ -19,8 +20,7 @@ function initApistate() {
 const INITIAL_STATE = initApistate();
 
 
-const apiReducer = (state = INITIAL_STATE, action:any) =>{
-    if (action.type.startWith(API_ACTIONS.FETCH_START)) {
+const apiReducer = (state = INITIAL_STATE, action:Action) =>{    if (action.type.startsWith(API_ACTIONS.FETCH_START)) {
         const inner  = camelcase(action.type.replace(API_ACTIONS.FETCH_START, ``))
         return {
             ...state,
@@ -32,7 +32,7 @@ const apiReducer = (state = INITIAL_STATE, action:any) =>{
         }
     }
 
-    if (action.type.startWith(API_ACTIONS.FETCH_SUCCESS)) {
+    if (action.type.startsWith(API_ACTIONS.FETCH_SUCCESS)) {
         const inner  = camelcase(action.type.replace(API_ACTIONS.FETCH_SUCCESS, ``))
         return {
             ...state,
@@ -45,7 +45,7 @@ const apiReducer = (state = INITIAL_STATE, action:any) =>{
         }
     }
 
-    if (action.type.startWith(API_ACTIONS.FETCH_FAILURE)) {
+    if (action.type.startsWith(API_ACTIONS.FETCH_FAILURE)) {
         const inner  = camelcase(action.type.replace(API_ACTIONS.FETCH_FAILURE, ``))
         return {
             ...state,
@@ -56,6 +56,8 @@ const apiReducer = (state = INITIAL_STATE, action:any) =>{
             }
         }
     }
+
+    return state
 
 }
 

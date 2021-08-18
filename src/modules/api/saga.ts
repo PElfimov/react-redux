@@ -6,10 +6,16 @@ import { apiActions } from 'modules/api/actions';
 
 
 export function* onApiLoad({payload, type}:Action) {
-    const actionType = type.replace(API_ACTIONS.FETCH_START, ``)
-    try{
+    
+    const actionType = type.replace(API_ACTIONS.FETCH_START, ``).toLowerCase()
+        try{
+
     let response ={}
-    yield api.fetch(actionType, payload).then(res=> response = res)
+    
+    yield api.fetch(actionType, payload).then(res=> {
+        
+         response = {...res}})
+    
     yield put(apiActions.fetchSuccess(actionType, response))
 
 }catch(e) {

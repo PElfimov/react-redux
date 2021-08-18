@@ -3,7 +3,7 @@ import ENDPOINTS from "modules/api/endpoints";
 import { API_ACTIONS } from "modules/api/actions";
 import { Action } from 'modules/lib/interfaces';
 
-function initApistate() {
+function initApiState() {
     return Object.keys(ENDPOINTS).reduce((acc:any, next)=>{
         const inner = {
             data:null,
@@ -17,7 +17,7 @@ function initApistate() {
     },{})
 }
 
-const INITIAL_STATE = initApistate();
+const INITIAL_STATE = initApiState();
 
 
 const apiReducer = (state = INITIAL_STATE, action:Action) =>{    if (action.type.startsWith(API_ACTIONS.FETCH_START)) {

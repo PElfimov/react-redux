@@ -1,6 +1,8 @@
 export interface RootState {
     api:any
-    app:any
+    app:{
+        selectedJob:string
+    }
 }
 
 export interface Action {

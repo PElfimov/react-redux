@@ -1,3 +1,4 @@
+import Navigation from "components/common/Navigation";
 import { JOBS } from "modules/api/endpoints";
 import { useEffect } from "react";
 import useFetch from "./../../hooks/useFech";
@@ -9,5 +10,5 @@ export default function Jobs() {
   }, [performFetch]);
 
   console.log(response);
-  return <div>Jobs</div>;
+  return <Navigation loading={false} services={[]} />;
 }

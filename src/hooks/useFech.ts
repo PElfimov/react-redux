@@ -10,7 +10,9 @@ const useFetch = (endPoint:any) => {
     const dispatch = useDispatch()
     const apiState = useSelector(selectApiState)
 
-    const performFetch = useCallback((data?) => dispatch(apiActions.fetch(endPoint, data)), [endPoint, dispatch])
+    const performFetch = useCallback(
+        (data?) => dispatch(apiActions.fetch(endPoint, data)
+        ), [endPoint, dispatch])
     const response = useMemo(()=> apiState[camelcase(endPoint)], [apiState, endPoint])
     
 

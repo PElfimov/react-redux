@@ -8,9 +8,10 @@ import List from "@material-ui/core/List";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { CircularProgress, Grid } from "@material-ui/core";
 import NavigationItem from "./NavigationItem";
+import { Service } from "modules/lib/interfaces";
 
 const drawerWidth = 240;
 
@@ -41,12 +42,11 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
   loading: boolean;
-  services: any;
+  services: Service[];
 }
 
 export default function Navigation({ loading, services }: Props) {
   const classes = useStyles();
-  const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = useCallback(
     () => setMobileOpen(!mobileOpen),
@@ -59,11 +59,20 @@ export default function Navigation({ loading, services }: Props) {
       <Divider />
       <List>
         {loading || !services ? (
-          <Grid container justify={`center`}>
+          <Grid container justifyContent={`center`}>
             <CircularProgress />
           </Grid>
         ) : (
-          <NavigationItem id={`5`} jobId={`job`} title={`title`} />
+          services.map((item) => {
+            return (
+              <NavigationItem
+                key={item.id}
+                id={item.id}
+                jobId={item.jobId}
+                title={item.title}
+              />
+            );
+          })
         )}
       </List>
       <Divider />

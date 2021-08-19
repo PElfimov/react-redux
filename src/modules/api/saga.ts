@@ -14,7 +14,7 @@ export function* onApiLoad({payload, type}:Action) {
     
     yield api.fetch(actionType, payload).then(res=> {
         
-         response = {...res}})
+         response = res})
     
     yield put(apiActions.fetchSuccess(actionType, response))
 

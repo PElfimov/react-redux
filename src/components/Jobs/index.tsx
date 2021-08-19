@@ -5,10 +5,10 @@ import useFetch from "./../../hooks/useFech";
 
 export default function Jobs() {
   const { response, performFetch } = useFetch(JOBS);
+  const { loading, data } = response;
   useEffect(() => {
     performFetch();
   }, [performFetch]);
 
-  console.log(response);
-  return <Navigation loading={false} services={[]} />;
+  return <Navigation loading={loading} services={data} />;
 }
